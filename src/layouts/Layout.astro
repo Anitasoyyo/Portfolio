@@ -146,7 +146,10 @@ const isHome = Astro.url.pathname === "/";//Esto define una variable en el front
 /* Estilos para MÓVIL (hasta 480px) */
 @media (max-width: 480px) {
 		
-	
+	:root {
+    --header-height: 35px; /* Para móvil */
+    /* ... resto de variables ... */
+}
  .nav { 
 	 		display: flex;
 		   flex-direction: column;
@@ -200,7 +203,7 @@ const isHome = Astro.url.pathname === "/";//Esto define una variable en el front
 	align-items: center;
 	position: relative;
 	text-align: center; 
-padding: 40px;
+padding: 20px;
 	
 		color: rgba(2,6,23,0.6);
 		border-top: 1px solid rgba(15,23,42,0.06);
@@ -217,12 +220,13 @@ padding: 40px;
 		z-index: -1;
 	}
 	
-	.site-footer small {
-		position: relative;
-		z-index: 1;
-		font-size: 15px; 
-		padding-bottom: 40px;
-	}
+    .site-footer small {
+        position: relative;
+        z-index: 1;
+        font-size: 14px; 
+        padding-bottom: 0;  
+        margin: 0; 
+    }
  
 }
 
