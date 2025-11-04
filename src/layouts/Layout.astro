@@ -194,10 +194,14 @@ const isHome = Astro.url.pathname === "/";//Esto define una variable en el front
   }
 
   .site-footer{ 
-		position: relative;
-		text-align: center; 
-		 
-	 padding-top: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	text-align: center; 
+padding: 40px;
+	
 		color: rgba(2,6,23,0.6);
 		border-top: 1px solid rgba(15,23,42,0.06);
 		overflow: hidden;
@@ -217,7 +221,7 @@ const isHome = Astro.url.pathname === "/";//Esto define una variable en el front
 		position: relative;
 		z-index: 1;
 		font-size: 15px; 
-		padding-bottom: 30px;
+		padding-bottom: 40px;
 	}
  
 }
@@ -434,14 +438,14 @@ const isHome = Astro.url.pathname === "/";//Esto define una variable en el front
 
 
 main.main-home {
-	height: calc(80vh - var(--header-height) - 48px);
+	height: calc(80vh - var(--header-height) - 30px);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	
 }
 main.main-default {
-	min-height: calc(100vh - var(--header-height) - 48px);
+	min-height: calc(100vh - var(--header-height) - 30px);
 	display: block;
 }
 /*calc nos sirve para hacer cálculos .La altutra de la ventana menos la altura del header y el footer */
