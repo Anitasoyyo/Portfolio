@@ -1,0 +1,199 @@
+---
+---
+
+<section class="hero">
+	<div class="hero-inner">
+		<img 
+			class="avatar" 
+			src="images/fotofrontal.png" 
+			alt="Foto de perfil" 
+			width="220" 
+			height="220" />
+
+		<h1 class="title">
+			<span class="hero__title-highlight">Desarrolladora Fullstack</span>
+		</h1>
+		<p class="subtitle">En proceso de mejora continua...</p>
+		<div class="description">
+			Con la ilusión de seguir profundizando en el mundo del <span class="highlight"><strong>desarrollo web</strong></span> en todo su ciclo: 
+			desde el aspecto creativo y prototipado hasta el producto final con herramientas 
+			de programación front y back.
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero{ display:flex; align-items:center; justify-content:center; padding-top:10px;width: 100%; }
+	.hero-inner{ text-align:center; max-width:860px;box-sizing: border-box;padding: 0px 16px; }
+
+	.avatar{
+		width:220px; height:220px; object-fit:cover; border-radius:50%;
+		border: 3px solid rgba(254, 219, 142, 0.12); 
+		box-shadow: 0 8px 30px rgba(190, 151, 106, 0.12);
+		display:block; margin:0 auto 20px;
+		
+	}   
+
+	.title{ 
+		font-size:28px; 
+		margin: 25px 0 8px; 
+		text-transform: none;
+		color: var(--color-text);
+	}
+
+	.hero__title-highlight {
+		display: block;
+		position: relative;
+		overflow: hidden;
+		white-space: nowrap;
+		border-right: 1px solid var(--color-text);
+		color: var(--color-text);
+		max-width: fit-content;/*el contenido no hará salto de línea aunque llegue al final del contenedor*/
+		margin-inline: auto;/*centrar el texto en su contenedor*/
+		animation:
+			type 1.25s steps(40) 0.24s 1 normal both,/*divide la animación en 40 pasos ("1":la animación ocurre una sóla vez)*/
+			cursor 1s step-end infinite;/*el cursor parpadea infinitamente con efecto escritura*/
+	}
+/*Animaciones definidas abajo*/
+	@keyframes type {
+		from { width: 0; }
+		to { width: 100%; }
+	}
+
+	@keyframes cursor {
+		from, 50%, to { border-color: transparent; }
+		50% { border-color: currentColor; }
+	}
+/*Estilos de subtítulo*/
+	.subtitle{ 
+		margin:5 0 1rem; 
+		color: var(--color-text);
+		opacity: 0.8;
+		font-size:16px; 
+	}
+
+	.description {
+		width: 38%;
+		margin: 0 auto;
+		color: var(--color-text);
+		box-sizing: border-box;
+		font-size: 13px;
+		line-height: 2.3;
+		animation: fadeIn 1s ease-in-out 2s forwards;
+		opacity: 0;
+			text-align: justify;
+			hyphens: auto; /* Esto ayuda a mejorar la justificación */
+			text-justify: inter-word; /* Esto mejora el espaciado entre palabras */
+	}
+
+
+	.highlight{
+    font-family:'Caveat', cursive ;
+	font-size: large;
+    font-weight: 500;
+    padding: 0 0.3em;
+    display: inline-block;
+    position: relative;
+	background-color:var(--color-brand);
+	color: white;
+	}
+
+	@keyframes fadeIn {
+		from { opacity: 0; transform: translateY(10px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+	/*media queries*/
+		@media (max-width:480px){
+		.avatar{ width:260px; height:260px;margin-bottom: 20px; }
+		.title{ font-size:25px; }
+		.subtitle{ font-size:18px; margin: 20px; }
+		.description{ 
+			width: 80%;
+			max-width: 380px;
+			box-sizing: border-box;
+			margin-top: 30px;
+			margin-left: auto;
+			margin-right: auto;
+			font-size: 13px; 
+			
+			
+		}
+		
+	}
+	/* Móvil grande */
+@media (min-width: 481px) and (max-width: 767px) {
+    .avatar{ width:260px; height:260px;margin-bottom: 30px; }
+		.title{ font-size:26px; }
+		.subtitle{ font-size:18px; margin: 10px; }
+		.description{ 
+			width: 80%;
+			max-width: 380px;
+			box-sizing: border-box;
+			margin-top: 30px;
+			margin-left: auto;
+			margin-right: auto;
+			font-size: 15px; 
+			
+			
+		}
+}
+	/* Tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+    		.avatar{ width:280px; height:280px;margin-bottom: 10px; }
+		.title{ font-size:40px; }
+		.subtitle{ font-size:23px; margin: 20px; }
+		.description{ 
+			width: 80%;
+			max-width: 580px;
+			box-sizing: border-box;
+			margin-top: 30px;
+			margin-left: auto;
+			margin-right: auto;
+			font-size: 23px; 
+			
+		}
+			    .highlight{
+        font-size:26px ;
+    }
+}
+
+	/* Desktop pequeño */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    	.avatar{ width:280px; height:280px;margin-bottom: 0px; }
+		.title{ font-size:40px; }
+		.subtitle{ font-size:23px; margin: 15px; }
+		.description{ 
+			width: 90%;
+			max-width: 580px;
+			box-sizing: border-box;
+			margin-top: 10px;
+			margin-left: auto;
+			margin-right: auto;
+			font-size: 25px; 
+			
+		}
+			    .highlight{
+        font-size:27px ;
+    }
+}
+/* Desktop grande */
+@media (min-width: 1281px) {
+  	.avatar{ width:285px; height:280px;margin-bottom: 20px; }
+		.title{ font-size:42px; }
+		.subtitle{ font-size:23px; margin: 20px; }
+		.description{ 
+			width: 95%;
+			max-width: 580px;
+			box-sizing: border-box;
+			margin-top: 30px;
+			margin-left: auto;
+			margin-right: auto;
+			font-size: 26px; 
+			
+		}  
+			    .highlight{
+        font-size:28px ;
+    }
+}
+
+</style>

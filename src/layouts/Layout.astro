@@ -1,0 +1,700 @@
+---
+const isHome = Astro.url.pathname === "/";//Esto define una variable en el frontmatter de Astro. Devuelve true si la ruta actual es la home ("/"), y false en cualquier otra página.
+---
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/png" href="/fotofrontal.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Ana Méndez | Portfolio</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+	</head>
+	<body>
+		
+		<header class="site-header" >
+			<nav class="nav">
+				   <div class="nav-left">
+					   <a href="/" class="brand" aria-label="Ir a inicio">
+						   Ana Méndez<span aria-hidden="true">®</span>
+					   </a>
+					   <ul class="nav-links">
+						   <li><a href="/">Inicio</a></li>
+						   <li><a href="/about">Sobre mí</a></li>
+						   <li><a href="/projects">Proyectos</a></li>
+					   </ul>
+				   </div>
+				   <ul class="social-links">
+					   <li>
+						   <a href="https://github.com/Anitasoyyo" target="_blank" rel="noopener noreferrer" title="GitHub">
+							   <i class="bi bi-github"></i>
+						   </a>
+					   </li>
+					   <li>
+						   <a href="https://www.linkedin.com/in/ana-m%C3%A9ndez-880520386/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+							   <i class="bi bi-linkedin"></i>
+						   </a>
+					   </li>
+					   <li>
+						   <a href="https://www.instagram.com/anacodeexplorer/" target="_blank" rel="noopener noreferrer" title="Instagram">
+							   <i class="bi bi-instagram"></i>
+						   </a>
+					   </li>
+					   <li class="theme-toggle-wrapper">
+						   <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+							   <i class="bi bi-sun-fill" id="theme-toggle-light-icon"></i>
+							   <i class="bi bi-moon-fill" id="theme-toggle-dark-icon"></i>
+						   </button>
+					   </li>
+				   </ul>
+			</nav>
+		</header>
+
+		<main class={isHome ? "main-home" : "main-default"}>
+			<!-- Esto usa esa variable para poner la clase CSS "main-home" solo en la home, y "main-default" en el resto de páginas. Así se pueden aplicar estilos diferentes según la página ya que en la home no quiero scroll-->
+			<div class="content">
+				<slot />  <!-- Aquí se insertará el contenido específico de cada página -->
+			</div>
+		</main>
+
+		<footer class="site-footer">
+		
+			<small>© {new Date().getFullYear()} Ana Méndez — desarrolladora fullstack</small>
+		</footer>
+ <!-- con new Date.getFullYear() se obtiene el año actual -->
+		<script>
+			// Función para manejar el tema.Si  en el html no encuentra un elemento con id theme-toggle, no hace nada y sale de la función para evitar errores.
+			function handleTheme() {
+				const themeToggle = document.getElementById('theme-toggle');
+				
+				if (!themeToggle) return;
+				
+				// Recuperar el tema guardado por el usuario
+				//Lo busca en el localStorage del navegador y si no hay nada, usa 'light' pero si hay algo, usa ese valor.
+				const savedTheme = localStorage.getItem('theme') || 'light';
+				document.documentElement.setAttribute('data-theme', savedTheme);
+
+				themeToggle.addEventListener('click', () => {
+					const currentTheme = document.documentElement.getAttribute('data-theme');
+					const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+					
+					document.documentElement.setAttribute('data-theme', newTheme);
+					localStorage.setItem('theme', newTheme);
+				});
+			}
+
+			// Ejecutar cuando el DOM esté listo
+			document.addEventListener('DOMContentLoaded', handleTheme);
+		</script>
+	</body>
+</html>
+
+<style>
+
+   :root {
+	   --header-height: 64px;
+	   --max-width: 1100px;
+	   --color-primary: #726a5a;
+	   --color-secondary: #c4b5a0;
+	   --color-accent: #f7c873;
+	   --color-bg: RGB(241, 229, 213);
+	   --color-bg-alt: #fff;
+	   --color-text: #22223b;
+	   --color-text-alt: #575a62;
+	   --header-bg: #f8f6f0;
+	   --border-color: #e5e7eb;
+	   --card-bg: #fff;
+	   --color-brand: #a89c87;
+	   --header-background: RGB(220, 198, 170);
+   }
+
+   [data-theme="dark"] {
+	--color-primary: #7d6f56;
+	--color-secondary: #23232b;
+	--color-accent: #f7c873;
+	--color-bg: #37434b;
+	--color-bg-alt: #2c2f34;
+	--color-text: #f3f4f6;
+	--color-text-alt: #bdbdbd;
+	--header-bg: #23272a;
+	--border-color: #35373b;
+	--card-bg: #2c2f34;
+	--color-brand: #67593f;
+	--header-background: #23272a;
+   }
+
+   body {
+		background: var(--color-bg);
+		color: var(--color-text);
+		font-family: 'Playfair Display', serif;
+		margin: 0;
+		min-height: 100vh;
+		transition: background 0.3s, color 0.3s;
+		overflow-x: hidden;
+   }
+
+   .site-header {
+    background: var(--header-background);
+	padding-bottom: 2px;
+
+}
+
+/* Estilos para MÓVIL (hasta 480px) */
+@media (max-width: 480px) {
+		
+	
+ .nav { 
+	 		display: flex;
+		   flex-direction: column;
+		   align-items: center;
+		   padding: 0 4px;
+	
+	   }
+	
+	   .nav-left {
+		   flex-direction: column;
+		   align-items: stretch;
+		   gap: 10px;
+	   }
+	  
+  .brand {
+  
+    padding: 6px 12px;
+    line-height: 1.1;
+    display: inline-block;
+		font-weight: 800;
+		font-size: 20px;
+		letter-spacing: -0.01em;
+		padding: 8px 16px;
+		margin:20px 0;
+		background-color: #c4b5a0; 
+		color: var(--color-bg);
+		border-radius: 6px;
+		text-decoration: none;
+		transform: rotate(-2deg);
+		transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  	
+
+  .nav-links {
+	gap: 2px;
+	font-size:18px;
+	margin-top: 0.2rem;
+  }
+
+  .social-links {
+    gap: 10px;
+    font-size: 0.6rem;
+    margin-top: 15px;
+	color: var(--color-brand);
+  }
+
+  .site-footer{ 
+		position: relative;
+		text-align: center; 
+		 
+	 padding-top: 50px;
+		color: rgba(2,6,23,0.6);
+		border-top: 1px solid rgba(15,23,42,0.06);
+		overflow: hidden;
+	}
+	
+	.footer-bg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: -1;
+	}
+	
+	.site-footer small {
+		position: relative;
+		z-index: 1;
+		font-size: 15px; 
+		padding-bottom: 30px;
+	}
+ 
+}
+
+   /* Responsive nav styles */
+   @media (min-width: 481px) and (max-width: 767px) {
+	    	.site-footer{ 
+		text-align: center; 
+		padding: 25px 4px; 
+		color: rgba(2,6,23,0.6);
+		border-top: 1px solid rgba(15,23,42,0.06);
+	}
+	
+	.site-footer small {
+		font-size: 16px; 
+		padding-bottom: 30px;
+	}
+	.nav {
+		   flex-direction: column;
+		   width: 100%;
+		max-width: var(--max-width);
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 16px;
+		box-sizing: border-box;
+		background: var(--header-background);
+		  
+	   }
+
+	 
+	   .nav-left {
+		display: flex;
+		   flex-direction: column;
+		align-items: center;
+		gap: 12px;
+	   }
+
+		.nav-links {
+		 gap: 20px;
+		 font-size: 1.3rem;
+		 margin-top: 0.2rem;
+	 }
+	 
+	.brand {
+		display: inline-block;
+		font-weight: 800;
+		font-size: 20px;
+		letter-spacing: -0.01em;
+		padding: 8px 16px;
+		margin:20px 0;
+		background-color: #c4b5a0; 
+		color: var(--color-bg);
+		border-radius: 6px;
+		text-decoration: none;
+		transform: rotate(-2deg);
+		transition: transform 0.3s ease, background-color 0.3s ease;
+		
+	}
+	.brand:hover {
+		transform: rotate(0deg) translateY(-2px);
+		background-color: var(--color-primary);
+	}
+
+	.brand span {
+		font-size: 0.8em;
+		vertical-align: super;
+		margin-left: 2px;
+	}
+
+	
+	   }
+	   .social-links {
+		 gap: 10px;
+         font-size: 0.6rem;
+         margin-top: 15px;
+	    color: var(--color-brand);
+	   }
+	 
+
+	   	.nav-links, .social-links { 
+		list-style: none; 
+		display: flex; 
+		margin-left: 10px; 
+		padding: 0; 
+	}
+
+
+	.nav-links a { 
+		text-decoration: none; 
+		color: inherit; /* Asegura que el color del texto sea el mismo que el del contenedor */
+		padding: 8px 10px; 
+		border-radius: 8px; 
+		position: relative;/*permite posicionar el after*/
+		overflow: hidden;/*ocultamos el contenido que desborda*/
+	}
+
+	.social-links a {
+		color: inherit;
+		text-decoration: none;
+		padding: 8px;
+	
+		display: flex;
+		align-items: center;
+		
+		transition: color 0.2s, transform 0.2s;
+	}
+
+	.nav-links a::after {/* Se utiliza para crear un elemento invisible dentro del enlace */
+		content: "";
+		position: absolute;/*se posiciona respecto al <a>*/
+		left: 50%;/* empieza en el centro horizontal*/
+		bottom: 2px;  /* A 2px del borde inferior */
+		transform: translateX(-50%) scaleX(0);/* translateX(-50%): centra perfectamente
+   scaleX(0): lo hace invisible (ancho 0) */
+		width: 80%;
+		height: 2px;
+		background: linear-gradient(90deg, #c6bb8c 0%, #fffbe6 100%);
+		border-radius: 1px;
+		box-shadow: 0 0 8px 2px #ffffff99;
+		opacity: 0.9;
+		transition: transform 0.6s cubic-bezier(.4,1.7,.7,1), opacity 0.2s;
+		pointer-events: none;
+	}
+	.nav-links a:hover::after, .nav-links a:focus::after {
+		transform: translateX(-50%) scaleX(1);
+		opacity: 1;
+	}
+	.nav-links a:hover { background: #e49d1a0a; }
+	.social-links a:hover { 
+		color: var(--color-primary);
+		transform: translateY(-2px);
+	}
+
+	.social-links i {
+		font-size: 1.3rem;
+	}
+   }
+
+	/* Estilos para el botón de tema */
+	.theme-toggle-wrapper {
+		margin-left: 20px;
+		position: relative;
+		display: flex;
+		align-items: center;
+	}
+
+	.theme-toggle {
+		background: none;
+		border: 2px solid transparent;
+		padding: 8px;
+		cursor: pointer;
+		color: var(--color-text);
+		border-radius: 50%;
+		transition: all 0.3s ease;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		background-color: transparent;
+	}
+
+	.theme-toggle::after {
+		content: '';
+		position: absolute;
+		top: -2px;
+		left: -2px;
+		right: -2px;
+		bottom: -2px;
+		border-radius: 50%;
+		background: linear-gradient(45deg, #ede7c2, #e2bb66);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+		z-index: -1;
+	}
+
+	.theme-toggle:hover::after {
+		opacity: 1;
+	}
+
+	.theme-toggle:hover {
+		border-color: transparent;
+		transform: scale(1.1);
+	}
+
+	.theme-toggle i {
+		font-size: 1.2rem;
+		transition: transform 0.3s ease;
+	}
+
+	.theme-toggle:hover i {
+		transform: rotate(15deg);
+	}
+
+	#theme-toggle-dark-icon {
+		display: none;
+	}
+
+	[data-theme="dark"] .theme-toggle::after {
+		background: linear-gradient(45deg, #cfced2, #575a62);
+	}
+
+	[data-theme="dark"] #theme-toggle-light-icon {
+		display: none;
+	}
+
+	[data-theme="dark"] #theme-toggle-dark-icon {
+		display: inline-block;
+	}
+
+
+
+main.main-home {
+	height: calc(80vh - var(--header-height) - 48px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+}
+main.main-default {
+	min-height: calc(100vh - var(--header-height) - 48px);
+	display: block;
+}
+/*calc nos sirve para hacer cálculos .La altutra de la ventana menos la altura del header y el footer */
+
+
+	.content {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+	
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Tablets */
+@media (min-width: 767px) and (max-width: 1024px) {
+	  	.site-footer{ 
+		text-align: center; 
+		padding: 26px 4px; 
+		color: rgba(2,6,23,0.6);
+		border-top: 2px solid rgba(15,23,42,0.06);
+	}
+	
+	.site-footer small {
+		font-size: 16px; 
+		padding-bottom: 32px;
+	}
+      .nav {
+		flex-direction: column;
+		width: 100%;
+		max-width: var(--max-width);
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 16px;
+		box-sizing: border-box;
+		background: var(--header-background);
+		  
+	   }
+
+	 
+	   .nav-left {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+	   }
+
+		.nav-links {
+		 gap: 20px;
+		 font-size: 1.6rem;
+		 margin-top: 0.2rem;
+	 }
+	 
+	.brand {
+		display: inline-block;
+		font-weight: 900;
+		font-size: 23px;
+		letter-spacing: -0.01em;
+		padding: 9px 16px;
+		margin:20px 0;
+		background-color: #c4b5a0; 
+		color: var(--color-bg);
+		border-radius: 6px;
+		text-decoration: none;
+		transform: rotate(-2deg);
+		transition: transform 0.3s ease, background-color 0.3s ease;
+		
+	}
+	.brand:hover {
+		transform: rotate(0deg) translateY(-2px);
+		background-color: var(--color-primary);
+	}
+
+	.brand span {
+		font-size: 0.9em;
+		vertical-align: super;
+		margin-left: 3px;
+	} 
+	 .social-links {
+		 gap: 15px;
+         font-size: 0.8rem;
+         margin-top: 13px;
+	    color: var(--color-brand);
+	   }
+}
+/* Desktop pequeño */
+@media (min-width: 1025px) and (max-width: 1280px) {
+	  	.site-footer{ 
+		text-align: center; 
+		padding: 25px 4px; 
+		color: rgba(2,6,23,0.6);
+		border-top: 1px solid rgba(15,23,42,0.06);
+	}
+	
+	.site-footer small {
+		font-size: 18px; 
+		padding-bottom: 30px;
+	}
+         .nav {
+		flex-direction: column;
+		width: 100%;
+		max-width: var(--max-width);
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 16px;
+		box-sizing: border-box;
+		background: var(--header-background);
+		  
+	   }
+	   	 
+	   .nav-left {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+	   }
+
+		.nav-links {
+		 gap: 20px;
+		 font-size: 1.5rem;
+		 margin-top: 0.2rem;
+	 }
+	 
+	.brand {
+		display: inline-block;
+		font-weight: 900;
+		font-size: 25px;
+		letter-spacing: -0.01em;
+		padding: 9px 16px;
+		margin:20px 0;
+		background-color: #c4b5a0; 
+		color: var(--color-bg);
+		border-radius: 6px;
+		text-decoration: none;
+		transform: rotate(-2deg);
+		transition: transform 0.3s ease, background-color 0.3s ease;
+		
+	}
+	.brand:hover {
+		transform: rotate(0deg) translateY(-2px);
+		background-color: var(--color-primary);
+	}
+
+	.brand span {
+		font-size: 1em;
+		vertical-align: super;
+		margin-left: 3px;
+	} 
+	 .social-links {
+		 gap: 20px;
+         font-size: 1.1rem;
+         margin-top: 13px;
+	    color: var(--color-brand);
+	   }
+
+}
+/* Desktop grande */
+@media (min-width: 1281px) {
+	  	.site-footer{ 
+		text-align: center; 
+		padding: 25px 4px; 
+		color: rgba(2,6,23,0.6);
+		border-top: 1px solid rgba(15,23,42,0.06);
+	}
+	
+	.site-footer small {
+		font-size: 19px; 
+		padding-bottom: 30px;
+	}
+          .nav {
+		flex-direction: column;
+		width: 100%;
+		max-width: var(--max-width);
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 16px;
+		box-sizing: border-box;
+		background: var(--header-background);
+		  
+	   }
+	   	 
+	   .nav-left {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+	   }
+
+		.nav-links {
+		 gap: 60px;
+		 font-size: 1.4rem;
+		 margin-top: 0;
+	 }
+	 
+	.brand {
+		display: inline-block;
+		font-weight: 900;
+		font-size: 26px;
+		letter-spacing: -0.01em;
+		padding: 10px 18px;
+		margin:22px 0;
+		background-color: #c4b5a0; 
+		color: var(--color-bg);
+		border-radius: 8px;
+		text-decoration: none;
+		transform: rotate(-2deg);
+		transition: transform 0.3s ease, background-color 0.3s ease;
+		
+	}
+	.brand:hover {
+		transform: rotate(0deg) translateY(-2px);
+		background-color: var(--color-primary);
+	}
+
+	.brand span {
+		font-size: 1em;
+		vertical-align: super;
+		margin-left: 3px;
+	} 
+	 .social-links {
+		 gap: 25px;
+         font-size: 1rem;
+         margin-top: 10px;
+	    color: var(--color-brand);
+	   }
+	   	.social-links i {
+		font-size: 1.8rem;
+	}
+
+		.theme-toggle {
+		background: none;
+		border: 2px solid transparent;
+		padding: 8px;
+		cursor: pointer;
+		color: var(--color-text);
+		border-radius: 50%;
+		transition: all 0.3s ease;
+		width: 55px;
+		height: 55px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		background-color: transparent;
+	}
+
+}
+</style>

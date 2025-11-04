@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+// Datos de los proyectos. Array de objetos con todos los proyectos.
+//En cada proyecto añado los enlaces a GitHub y demo.
+const projects = [
+    {
+        title: "Oráculo de Zeus",
+        description: "Aplicación web que simula un oráculo místico para predicciones climáticas, combinando diseño antiguo con tecnología moderna.",
+    
+        image: "images/oraculo-zeus.jpg",
+
+        tags: ["HTML", "CSS", "React", "JavaScript"],
+        githubUrl: "https://github.com/Anitasoyyo/Proyecto-tiempo",
+        demoUrl: "https://www.instagram.com/p/DMNFVSgSXyT/"
+    },
+      {
+        title: "Más allá del Umbral",
+        description: "Generador de historias de terror que crea relatos con IA basándose en las palabras que el usuario proporciona.",
+        image: "images/umbral.jpg",
+
+        tags: ["HTML", "CSS", "API","React", "JavaScript"],
+        githubUrl: "https://github.com/Anitasoyyo/Umbral",
+        demoUrl: "https://www.instagram.com/p/DP3is84EuGE//"
+    },
+      {
+        title: "Catmillón",
+        description: "Aplicación interactiva diseñada para tablets, pensada para que los gatos interactúen con la pantalla y se genere tu combinación de números perfecta para el Eurmillón.",
+        image: "images/catmillon.jpg",
+
+        tags: ["HTML", "CSS", "JavaScript", "React"],
+        githubUrl: "https://github.com/Anitasoyyo/mi-proyecto",
+        demoUrl: "https://www.instagram.com/p/DK1soAKoFiS/"
+    },
+         {
+        title: "Proyecto de Validación con Regex",
+        description: "Proyecto creado como práctica de validación con expresiones regulares.",
+        image: "images/regex.jpg",
+
+        tags: ["HTML", "CSS", "JavaScript", "Regex"],
+        githubUrl: "https://github.com/Anitasoyyo/Proyecto-regex",
+        demoUrl: "https://www.instagram.com/p/DPTbcJzDwy0/"
+    },
+          {
+        title: "Prototipo Noirabeille",
+        description: "prototipo creado en Figma y posteriormente maquetado en React ",
+        image: "images/prototipado.jpg",
+
+        tags: ["Figma", "HTML", "CSS", "JavaScript", "React"],
+        githubUrl: "https://github.com/Anitasoyyo/Noirabeille",
+        demoUrl: "https://www.instagram.com/p/DKKd9-Os4Mu/"
+    },
+
+];
+---
+
+<Layout><!--Por cada proyecto del array projects, se generará una tarjeta de proyecto -->
+    <section class="projects-section">
+        <h1>Mis Proyectos</h1>
+        <p class="section-intro">
+            Una selección de algunos de mis proyectos que he desarrollado, aplicando diferentes tecnologías y buenas prácticas.
+        </p>
+        
+        <div class="projects-grid">
+            {projects.map(project => (
+                <ProjectCard {...project} />
+            ))}
+        </div>
+    </section>
+</Layout>
+
+<style>
+ .project-image {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+
+.projects-section {
+    padding: 48px 20px;
+        max-width: var(--max-width);
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        color: var(--color-text);
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .section-intro {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto 48px;
+        color: var(--color-text);
+        opacity: 0.9;
+        line-height: 1.6;
+       font-size: calc(14px + 0.5vw);  
+    }
+
+    .projects-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        justify-content: center;
+        padding: 20px 0;
+        max-width: 900px; 
+        margin: 0 auto; 
+    }
+
+    /* Responsive  */
+    @media (max-width: 900px) {
+        h1 {
+            font-size: 2rem;
+        }
+
+        .projects-grid {
+            max-width: 90%;
+            padding: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 2rem;
+        }
+
+        .projects-grid {
+            max-width: 90%;
+            padding: 5px;
+        }
+    }
+</style>

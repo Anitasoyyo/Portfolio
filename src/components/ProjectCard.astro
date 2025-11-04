@@ -1,0 +1,186 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    image: string;
+    tags: string[];
+    githubUrl?: string;
+    demoUrl?: string;
+}
+
+const { title, description, image, tags, githubUrl, demoUrl } = Astro.props;
+---
+
+<article class="project-card">
+    <div class="project-image">
+        <img src={image} alt={`Captura del proyecto ${title}`} />
+        <div class="project-overlay">
+            <div class="project-links">
+                {githubUrl && (
+                    <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="project-link">
+                        <i class="bi bi-github"></i>
+                        <span>Código</span>
+                    </a>
+                )}
+                {demoUrl && (
+                    <a href={demoUrl} target="_blank" rel="noopener noreferrer" class="project-link">
+                        <i class="bi bi-link-45deg"></i>
+                        <span>Demo</span>
+                    </a>
+                )}
+            </div>
+        </div>
+    </div>
+    <div class="project-info">
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <div class="project-tags">
+            {tags.map(tag => (
+                <span class="tag">{tag}</span>
+            ))}
+        </div>
+    </div>
+</article>
+
+<style>
+
+        .project-card {
+                background: var(--card-bg, rgba(255, 255, 255, 0.8));
+                border-radius: 15px;
+                overflow: hidden;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                border: 1px solid var(--border-color);
+        }
+.project-card:hover {
+        border: 1px solid var(--color-primary);
+        box-shadow: 0 12px 24px var(--color-primary);
+        }
+        @media (max-width: 768px) {
+            .project-card {
+                animation: scaleIn 0.9s cubic-bezier(.4,0,.2,1);
+            }
+            @keyframes scaleIn {
+                0% {
+                    opacity: 0;
+                    transform: scale(1.1);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+     .project-image {
+        position: relative;
+        width: 100%;
+        min-height: 200px; 
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f5f5f5; 
+    }
+
+    .project-image img {
+        width: 100%;
+        height: auto;
+        max-height: 400px; 
+        display: block;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .project-image img {
+        transform: scale(1.05);
+    }
+
+    .project-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .project-card:hover .project-overlay {
+        opacity: 1;
+    }
+
+    .project-links {
+        display: flex;
+        gap: 20px;
+    }
+
+    .project-link {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 12px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        transition: background-color 0.3s ease;
+    }
+
+    .project-link:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .project-link i {
+        font-size: 1.5rem;
+    }
+
+    .project-info {
+        padding: 20px;
+    }
+
+    .project-info h3 {
+        margin: 0 0 12px;
+        color: var(--color-text);
+        font-size: 1.5rem;
+        line-height: 1.2;
+        font-weight: 700;
+    }
+
+    .project-info p {
+        margin: 0 0 16px;
+        color: var(--color-text);
+        opacity: 0.9;
+        line-height: 1.5;
+         font-size: calc(13px + 0.5vw); 
+    }
+
+    .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .tag {
+        background: var(--color-primary);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+    }
+
+    /* Dark theme  */
+    :global([data-theme="dark"]) .project-card {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    :global([data-theme="dark"]) .project-card:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+</style>
