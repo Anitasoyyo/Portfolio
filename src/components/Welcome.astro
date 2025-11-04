@@ -85,7 +85,7 @@
 			hyphens: auto; /* Esto ayuda a mejorar la justificación */
 			text-justify: inter-word; /* Esto mejora el espaciado entre palabras */
 	}
-
+      
 
 	.highlight{
     font-family:'Caveat', cursive ;
@@ -108,17 +108,20 @@
 		.title{ font-size:25px; }
 		.subtitle{ font-size:18px; margin: 20px; }
 		.description{ 
-			width: 80%;
-			max-width: 380px;
+			width: 90%;
+			max-width: 390px;
 			box-sizing: border-box;
 			margin-top: 30px;
 			margin-left: auto;
 			margin-right: auto;
-			font-size: 13px; 
-			
-			
+			font-size: 1.1rem; 
+			hyphens: none;
+			text-align:center;
+		 
 		}
-		
+		.highlight{
+			font-size: 1.4rem;
+		}
 	}
 	/* Móvil grande */
 @media (min-width: 481px) and (max-width: 767px) {
@@ -132,9 +135,14 @@
 			margin-top: 30px;
 			margin-left: auto;
 			margin-right: auto;
-			font-size: 15px; 
+			font-size: 17px; 
+			hyphens: none;
+			text-align:center;
+			line-height: 2.6;
 			
-			
+		}
+		.highlight{
+			font-size: 1.3rem;
 		}
 }
 	/* Tablets */
@@ -150,7 +158,8 @@
 			margin-left: auto;
 			margin-right: auto;
 			font-size: 23px; 
-			
+			hyphens: none;
+			text-align:center;
 		}
 			    .highlight{
         font-size:26px ;
@@ -170,7 +179,8 @@
 			margin-left: auto;
 			margin-right: auto;
 			font-size: 25px; 
-			
+			hyphens: none;
+			text-align:center;
 		}
 			    .highlight{
         font-size:27px ;
@@ -189,7 +199,8 @@
 			margin-left: auto;
 			margin-right: auto;
 			font-size: 26px; 
-			
+			hyphens: none;
+			text-align:center;
 		}  
 			    .highlight{
         font-size:28px ;
