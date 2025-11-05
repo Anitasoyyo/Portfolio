@@ -442,12 +442,13 @@ padding: 20px;
 
 
 main.main-home {
-	height: calc(80vh - var(--header-height) - 10px);
+	min-height: calc(75vh - var(--header-height));
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: center;
-	
+	padding-top: 20px;
 }
+
 main.main-default {
 	min-height: calc(100vh - var(--header-height) - 10px);
 	display: block;
