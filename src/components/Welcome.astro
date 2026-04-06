@@ -5,7 +5,7 @@
 	<div class="hero-inner">
 		<img 
 			class="avatar" 
-			src="images/fotofrontal.png" 
+			src="images/fotoblanca.png" 
 			alt="Foto de perfil" 
 			width="220" 
 			height="220" />
@@ -13,11 +13,10 @@
 		<h1 class="title">
 			<span class="hero__title-highlight">Desarrolladora Fullstack</span>
 		</h1>
-		<p class="subtitle">En proceso de mejora continua...</p>
+		<p class="subtitle"><span class="subtitle__typing">¡ Hola, mi nombre es <strong><span style="color: var(--color-primary)">Ana Méndez</span></strong> !</span></p>
 		<div class="description">
-			Con la ilusión de seguir profundizando en el mundo del <span class="highlight"><strong>desarrollo web</strong></span> en todo su ciclo: 
-			desde el aspecto creativo y prototipado hasta el producto final con herramientas 
-			de programación front y back.
+			Me encanta el <span class="highlight"><strong>desarrollo web</strong></span> en todo su ciclo y ver cómo las piezas van encajando hasta que el proyecto cobra vida. Además, apunto hacia la IA agéntica y Automatización porque me interesa integrarlas tanto en productos web y procesos empresariales como en mi propio flujo de trabajo como desarrolladora.
+	
 		</div>
 	</div>
 </section>
@@ -48,10 +47,10 @@
 		white-space: nowrap;
 		border-right: 1px solid var(--color-text);
 		color: var(--color-text);
-		max-width: fit-content;/*el contenido no hará salto de línea aunque llegue al final del contenedor*/
+		max-width: fit-content;/*el contenido no va a hacere el salto de línea aunque llegue al final del contenedor*/
 		margin-inline: auto;/*centrar el texto en su contenedor*/
 		animation:
-			type 1.25s steps(40) 0.24s 1 normal both,/*divide la animación en 40 pasos ("1":la animación ocurre una sóla vez)*/
+			type 1.25s steps(50) 0.500s 1 normal both,/*divide la animación en 40 pasos("1":la animación ocurre una sóla vez)*/
 			cursor 1s step-end infinite;/*el cursor parpadea infinitamente con efecto escritura*/
 	}
 /*Animaciones definidas abajo*/
@@ -64,6 +63,13 @@
 		from, 50%, to { border-color: transparent; }
 		50% { border-color: currentColor; }
 	}
+/*Fade in en subtítulo*/
+	.subtitle__typing {
+		display: inline-block;
+		opacity: 0;
+		animation: fadeIn 1s ease-in-out 1.6s forwards;
+	}
+
 /*Estilos de subtítulo*/
 	.subtitle{ 
 		margin:5 0 1rem; 

@@ -16,12 +16,16 @@ const isHome = Astro.url.pathname === "/";//Esto define una variable en el front
 	</head>
 	<body>
 		
-		<header class="site-header" >
+		<header class="site-header" style="position:relative;">
 			<nav class="nav">
 				   <div class="nav-left">
 					   <a href="/" class="brand" aria-label="Ir a inicio">
 						   Ana Méndez<span aria-hidden="true">®</span>
 					   </a>
+					   <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" style="position:absolute;top:8px;right:16px;width:52px;height:52px;font-size:6rem;">
+						   <i class="bi bi-sun-fill" id="theme-toggle-light-icon"></i>
+						   <i class="bi bi-moon-fill" id="theme-toggle-dark-icon"></i>
+					   </button>
 					   <ul class="nav-links">
 						   <li><a href="/">Inicio</a></li>
 						   <li><a href="/about">Sobre mí</a></li>
@@ -43,12 +47,6 @@ const isHome = Astro.url.pathname === "/";//Esto define una variable en el front
 						   <a href="https://www.instagram.com/anacodeexplorer/" target="_blank" rel="noopener noreferrer" title="Instagram">
 							   <i class="bi bi-instagram"></i>
 						   </a>
-					   </li>
-					   <li class="theme-toggle-wrapper">
-						   <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
-							   <i class="bi bi-sun-fill" id="theme-toggle-light-icon"></i>
-							   <i class="bi bi-moon-fill" id="theme-toggle-dark-icon"></i>
-						   </button>
 					   </li>
 				   </ul>
 			</nav>
@@ -140,6 +138,7 @@ const isHome = Astro.url.pathname === "/";//Esto define una variable en el front
    .site-header {
     background: var(--header-background);
 	padding-bottom: 2px;
+	position: relative;
 
 }
 
@@ -366,12 +365,15 @@ padding: 20px;
 	}
    }
 
-	/* Estilos para el botón de tema */
-	.theme-toggle-wrapper {
-		margin-left: 20px;
-		position: relative;
+	/* Brand con toggle al lado */
+	.brand-row {
 		display: flex;
 		align-items: center;
+		gap: 8px;
+	}
+
+	.social-links {
+		justify-content: center;
 	}
 
 	.theme-toggle {
@@ -415,7 +417,7 @@ padding: 20px;
 	}
 
 	.theme-toggle i {
-		font-size: 1.2rem;
+		font-size: 1.6rem;
 		transition: transform 0.3s ease;
 	}
 
