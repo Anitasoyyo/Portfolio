@@ -20,7 +20,7 @@ const isHome = Astro.url.pathname === "/";//Esto define una variable en el front
 			<nav class="nav">
 				   <div class="nav-left">
 					   <a href="/" class="brand" aria-label="Ir a inicio">
-						   Ana Méndez<span aria-hidden="true">®</span>
+						   Ana Méndez
 					   </a>
 					   <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema" style="position:absolute;top:8px;right:16px;width:52px;height:52px;font-size:6rem;">
 						   <i class="bi bi-sun-fill" id="theme-toggle-light-icon"></i>
@@ -61,7 +61,7 @@ const isHome = Astro.url.pathname === "/";//Esto define una variable en el front
 
 		<footer class="site-footer">
 		
-			<small>© {new Date().getFullYear()} Ana Méndez — desarrolladora fullstack</small>
+			<small>© {new Date().getFullYear()} Ana Méndez — Desarrolladora Fullstack</small>
 		</footer>
  <!-- con new Date.getFullYear() se obtiene el año actual -->
 		<script>
@@ -107,6 +107,7 @@ const isHome = Astro.url.pathname === "/";//Esto define una variable en el front
 	   --border-color: #e5e7eb;
 	   --card-bg: #fff;
 	   --color-brand: #a89c87;
+	   --color-name-highlight: #67593f;
 	   --header-background: RGB(220, 198, 170);
    }
 
@@ -122,6 +123,7 @@ const isHome = Astro.url.pathname === "/";//Esto define una variable en el front
 	--border-color: #35373b;
 	--card-bg: #2c2f34;
 	--color-brand: #67593f;
+	--color-name-highlight: #a89c87;
 	--header-background: #23272a;
    }
 
@@ -173,7 +175,7 @@ const isHome = Astro.url.pathname === "/";//Esto define una variable en el front
 		letter-spacing: -0.01em;
 		padding: 8px 16px;
 		margin:20px 0;
-		background-color: #c4b5a0; 
+		background-color: var(--color-brand);
 		color: var(--color-bg);
 		border-radius: 6px;
 		text-decoration: none;
@@ -277,7 +279,7 @@ padding: 20px;
 		letter-spacing: -0.01em;
 		padding: 8px 16px;
 		margin:20px 0;
-		background-color: #c4b5a0; 
+		background-color: var(--color-brand);
 		color: var(--color-bg);
 		border-radius: 6px;
 		text-decoration: none;
@@ -306,11 +308,11 @@ padding: 20px;
 	   }
 	 
 
-	   	.nav-links, .social-links { 
-		list-style: none; 
-		display: flex; 
-		margin-left: 10px; 
-		padding: 0; 
+	   	.nav-links, .social-links {
+		list-style: none;
+		display: flex;
+		margin-left: 0;
+		padding: 0;
 	}
 
 
@@ -361,7 +363,7 @@ padding: 20px;
 	}
 
 	.social-links i {
-		font-size: 1.3rem;
+		font-size: 1.5rem;
 	}
    }
 
@@ -379,7 +381,7 @@ padding: 20px;
 	.theme-toggle {
 		background: none;
 		border: 2px solid transparent;
-		padding: 8px;
+		padding: 7px;
 		cursor: pointer;
 		color: var(--color-text);
 		border-radius: 50%;
@@ -396,10 +398,10 @@ padding: 20px;
 	.theme-toggle::after {
 		content: '';
 		position: absolute;
-		top: -2px;
-		left: -2px;
-		right: -2px;
-		bottom: -2px;
+		top: 2px;
+		left: 2px;
+		right: 2px;
+		bottom: 2px;
 		border-radius: 50%;
 		background: linear-gradient(45deg, #ede7c2, #e2bb66);
 		opacity: 0;
@@ -413,11 +415,11 @@ padding: 20px;
 
 	.theme-toggle:hover {
 		border-color: transparent;
-		transform: scale(1.1);
+		transform: scale(1);
 	}
 
 	.theme-toggle i {
-		font-size: 1.6rem;
+		font-size: 1.2rem;
 		transition: transform 0.3s ease;
 	}
 
@@ -431,6 +433,17 @@ padding: 20px;
 
 	[data-theme="dark"] .theme-toggle::after {
 		background: linear-gradient(45deg, #cfced2, #575a62);
+	}
+
+	[data-theme="dark"] .brand {
+		background-color: var(--color-primary);
+		color: var(--color-text);
+	}
+
+	[data-theme="dark"] .site-footer small {
+		color: var(--color-text);
+		font-size: 1.1rem;
+		font-weight: 600;
 	}
 
 	[data-theme="dark"] #theme-toggle-light-icon {
@@ -517,7 +530,7 @@ main.main-default {
 		letter-spacing: -0.01em;
 		padding: 9px 16px;
 		margin:20px 0;
-		background-color: #c4b5a0; 
+		background-color: var(--color-brand);
 		color: var(--color-bg);
 		border-radius: 6px;
 		text-decoration: none;
@@ -536,9 +549,9 @@ main.main-default {
 		margin-left: 3px;
 	} 
 	 .social-links {
-		 gap: 15px;
-         font-size: 0.8rem;
-         margin-top: 13px;
+		 gap: 28px;
+         font-size: 0.9rem;
+         margin-top: 12px;
 	    color: var(--color-brand);
 	   }
 }
@@ -589,7 +602,7 @@ main.main-default {
 		letter-spacing: -0.01em;
 		padding: 9px 16px;
 		margin:20px 0;
-		background-color: #c4b5a0; 
+		background-color: var(--color-brand);
 		color: var(--color-bg);
 		border-radius: 6px;
 		text-decoration: none;
@@ -662,7 +675,7 @@ main.main-default {
 		letter-spacing: -0.01em;
 		padding: 10px 18px;
 		margin:22px 0;
-		background-color: #c4b5a0; 
+		background-color: var(--color-brand);
 		color: var(--color-bg);
 		border-radius: 8px;
 		text-decoration: none;
