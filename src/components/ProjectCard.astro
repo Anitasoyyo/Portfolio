@@ -6,15 +6,17 @@ interface Props {
     tags: string[];
     githubUrl?: string;
     demoUrl?: string;
+    badge?: string;
 }
 
-const { title, description, image, tags, githubUrl, demoUrl } = Astro.props;
+const { title, description, image, tags, githubUrl, demoUrl, badge } = Astro.props;
 ---
 
 <article class="project-card">
     <div class="project-image">
         <img src={image} alt={`Captura del proyecto ${title}`} />
         <div class="project-overlay">
+            {badge && <span class="project-badge">{badge}</span>}
             <div class="project-links">
                 {githubUrl && (
                     <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="project-link">
@@ -113,6 +115,29 @@ const { title, description, image, tags, githubUrl, demoUrl } = Astro.props;
 
     .project-card:hover .project-overlay {
         opacity: 1;
+    }
+
+    .project-badge {
+        position: absolute;
+        top: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, var(--color-primary), #f0a500);
+        color: white;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        padding: 7px 20px;
+        border-radius: 20px;
+        white-space: nowrap;
+        text-transform: uppercase;
+        box-shadow: 0 0 12px rgba(240, 165, 0, 0.6), 0 0 28px rgba(240, 165, 0, 0.3);
+        animation: badgePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes badgePulse {
+        0%, 100% { box-shadow: 0 0 12px rgba(240, 165, 0, 0.6), 0 0 28px rgba(240, 165, 0, 0.3); }
+        50%       { box-shadow: 0 0 20px rgba(240, 165, 0, 0.9), 0 0 40px rgba(240, 165, 0, 0.5); }
     }
 
     .project-links {
